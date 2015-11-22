@@ -15,7 +15,7 @@
     <entity-ids>
       <counter>
         <item-type stereotype="" type="AbstractElementGroup" />
-        <value>85</value>
+        <value>126</value>
       </counter>
       <counter>
         <item-type stereotype="" type="UmlClass" />
@@ -39,11 +39,11 @@
     <fields>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
-        <value>5</value>
+        <value>18</value>
       </counter>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
-        <value>6</value>
+        <value>20</value>
       </counter>
     </fields>
   </counters>
@@ -73,6 +73,13 @@
     <custom-types>
       <type id="Matrix" tid="" name="Matrix" description="" nullable="false" />
       <type id="double" tid="" name="double" description="" nullable="false" />
+      <type id="Matrix[]" tid="" name="Matrix[]" description="" nullable="false" />
+      <type id=";" tid="" name=";" description="" nullable="false" />
+      <type id="Matrix;" tid="" name="Matrix;" description="" nullable="false" />
+      <type id="train" tid="" name="train" description="" nullable="false" />
+      <type id="Validation" tid="" name="Validation" description="" nullable="false" />
+      <type id="validation" tid="" name="validation" description="" nullable="false" />
+      <type id="LinearSolver&lt;DenseMatrix64F&gt;" tid="" name="LinearSolver&lt;DenseMatrix64F&gt;" description="" nullable="false" />
     </custom-types>
   </types>
   <filters />
@@ -124,13 +131,20 @@
             <associated-diagrams />
             <owned-items />
             <style class="default" />
-            <attributes />
+            <attributes>
+              <attribute id="a5fd6693fed754d1ebf664f517c9f2b76996" cid="AT015" name="Matrix" type="train" type-id="train" visibility="undefined">
+                <style class="default" />
+              </attribute>
+              <attribute id="a2fd744ecc1a247259f0d022a9b5c8590996" cid="AT016" name="Matrix" type="validation" type-id="validation" visibility="undefined">
+                <style class="default" />
+              </attribute>
+            </attributes>
             <operations>
-              <operation id="oca44ff4ec83e4dbba38679547bd78d50786" cid="OP001" name="getTrainMatrix" type="" type-id="" visibility="public">
+              <operation id="oca44ff4ec83e4dbba38679547bd78d50786" cid="OP017" name="getTrainMatrix" type="Matrix" type-id="Matrix" visibility="public">
                 <style class="default" />
                 <source-codes />
               </operation>
-              <operation id="o25707f3a99e64ff682551ca7bfe57297793" cid="OP002" name="getValMatrix" type="" type-id="" visibility="public">
+              <operation id="o25707f3a99e64ff682551ca7bfe57297793" cid="OP018" name="getValMatrix" type="Matrix" type-id="Matrix" visibility="public">
                 <style class="default" />
                 <source-codes />
               </operation>
@@ -155,8 +169,17 @@
             <associated-diagrams />
             <owned-items />
             <style class="default" />
-            <attributes />
-            <operations />
+            <attributes>
+              <attribute id="a247e59a6393f40c98db65338451ad2a9941" cid="AT012" name="m" type="Matrix" type-id="Matrix" visibility="undefined">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o74e8cc6f685a45958f6ee43a991a2e81186" cid="OP014" name="getMatrix" type="Matrix" type-id="Matrix" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+            </operations>
             <template-parameters>
               <source-codes />
             </template-parameters>
@@ -169,15 +192,51 @@
             <owned-items />
             <style class="default" />
           </item>
-          <item id="di459199509485225357" cid="C005" type="class" name="FiveFoldReader" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" visibility="package" creator="P3f1b67ffa4604f349164e28e966c03c8" creation-date="11/22/2015 00:39:37">
+          <item id="di459199509485225357" cid="C005" type="class" name="FiveFoldReader" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" visibility="package" creation-date="11/22/2015 00:39:37">
             <stereotypes />
+            <documentation>
+              <text>
+                <styles>
+                  <style name="S1" font-name="新細明體" font-size="9" font-bold="false" font-italic="false" font-underline="false" font-strikeout="false">
+                    <text>
+                      <solid-brush color="#FF000000" />
+                    </text>
+                  </style>
+                </styles>
+                <content>
+                  <paragraph>
+                    <p s="S1">
+                      <t />
+                    </p>
+                  </paragraph>
+                </content>
+              </text>
+            </documentation>
+            <cooperation>
+              <participants />
+              <comments />
+            </cooperation>
             <associated-diagrams />
             <owned-items />
             <style class="default" />
-            <attributes />
-            <operations />
+            <attributes>
+              <attribute id="a4e34c3bc79b547af86f0a47f604d795c671" cid="AT011" name="five_folds" type="Matrix" type-id="Matrix" visibility="private" multiplicity="*">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o502d46e6140a4bdca51bb21769f57c40284" cid="OP013" name="getMatrixByIndex" type="Matrix;" type-id="Matrix;" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pa035837b51984a678fb3ad1011fda744" name="int i" type="" type-id="" />
+                </parameters>
+                <source-codes />
+              </operation>
+            </operations>
             <template-parameters>
-              <source-codes />
+              <source-codes>
+                <source-code language="ActionScript" />
+              </source-codes>
             </template-parameters>
           </item>
           <item id="di938094378484322612" cid="GNR003" type="generalization" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" visibility="package" creator="P3f1b67ffa4604f349164e28e966c03c8" creation-date="11/22/2015 00:40:11">
@@ -203,14 +262,18 @@
             <associated-diagrams />
             <owned-items />
             <style class="default" />
-            <attributes />
+            <attributes>
+              <attribute id="a86a7df0d1da94e70b476dd4072c1393f330" cid="AT017" name="pinv" type="LinearSolver&lt;DenseMatrix64F&gt;" type-id="LinearSolver&lt;DenseMatrix64F&gt;" visibility="undefined">
+                <style class="default" />
+              </attribute>
+            </attributes>
             <operations>
-              <operation id="o9788c29e96e24bd5a1267ab7133b396a548" cid="OP004" name="calculate" type="Matrix" type-id="Matrix" visibility="public">
+              <operation id="o9788c29e96e24bd5a1267ab7133b396a548" cid="OP019" name="calculate" type="Matrix" type-id="Matrix" visibility="public">
                 <style class="default" />
                 <parameters>
-                  <parameter id="pf0ec32a768c242fcab15b82b4d69005b" name="double lambda" type="" type-id="" />
-                  <parameter id="p7e8dba55a60f473cbda36fb02a611be9" name="Matrix x" type="" type-id="" />
-                  <parameter id="p43c300731d2940e48c356c9693b0fd9d" name="Matrix y" type="" type-id="" />
+                  <parameter id="pd9ca550e578b4a6b827f32442bd87915" name="double lambda" type="" type-id="" />
+                  <parameter id="p9851c35696a94744811a499528c63ce1" name="Matrix x" type="" type-id="" />
+                  <parameter id="pe2c1234be8614457948f58ae2b0f9c4d" name="Matrix y" type="" type-id="" />
                 </parameters>
                 <source-codes />
               </operation>
@@ -267,7 +330,7 @@
             <class />
           </item>
           <item id="di459199509485225357" iid="6fab18a5b499496181d64bfbe4262b6e" creation-date="11/22/2015 00:39:37" order-index="5" type="entity">
-            <layout ax="433" ay="293" awidth="186" aheight="104" x="433" y="293" width="186" height="104" angle="0" />
+            <layout ax="433" ay="293" awidth="224" aheight="104" x="433" y="293" width="224" height="104" angle="0" />
             <class />
           </item>
           <item id="di938094378484322612" iid="01d5bfbc66ce4cdfbc2a4caa6758fd0a" creation-date="11/22/2015 00:40:11" order-index="6" type="relation">
@@ -289,16 +352,16 @@
             <relation from="di951092516378943628" from-iid="cb17eaa2592e481a9e835993eada1ffc" to="di492253149796009776" to-iid="6f986d0257784d578fa8e4baf8d77dda" />
           </item>
           <item id="di471306104318782160" iid="6c0275d84a474150960b4659c90095f0" creation-date="11/22/2015 00:40:18" order-index="8" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="511" y1="293" x2="388" y2="204" start-border-pos="0.104838709677419" end-border-pos="0.561353211009174">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="527" y1="293" x2="388" y2="204" start-border-pos="0.104838709677419" end-border-pos="0.561353211009174">
               <points>
-                <point x="511" y="293" />
+                <point x="527" y="293" />
                 <point x="388" y="204" />
               </points>
             </layout>
             <relation from="di459199509485225357" from-iid="6fab18a5b499496181d64bfbe4262b6e" to="di492253149796009776" to-iid="6f986d0257784d578fa8e4baf8d77dda" />
           </item>
           <item id="di327659066236792150" iid="50bde9e6f08045748193beaa63276b86" creation-date="11/22/2015 00:51:58" order-index="9" type="entity">
-            <layout ax="174.5" ay="501" awidth="316" aheight="91" x="174.5" y="501" width="316" height="91" angle="0" />
+            <layout ax="175" ay="500" awidth="350" aheight="91" x="175" y="500" width="350" height="91" angle="0" />
             <class />
           </item>
           <item id="di355456425535906209" iid="152a830883724e9bb24b49cd27414ec2" creation-date="11/22/2015 00:57:20" order-index="10" type="entity">
