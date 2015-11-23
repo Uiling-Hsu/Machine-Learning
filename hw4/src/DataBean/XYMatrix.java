@@ -7,7 +7,7 @@ import org.ejml.simple.SimpleMatrix;
 
 public class XYMatrix {
 	private DenseMatrix64F X;
-	private SimpleMatrix Y;
+	private DenseMatrix64F Y;
 	
 	private ArrayList<ArrayList<Double>> A_X = new ArrayList<ArrayList<Double>>();
 	private ArrayList<Double> A_Y = new ArrayList<Double>();
@@ -17,10 +17,10 @@ public class XYMatrix {
 	public void setX(DenseMatrix64F x) {
 		X = x;
 	}
-	public SimpleMatrix getY() {
+	public DenseMatrix64F getY() {
 		return Y;
 	}
-	public void setY(SimpleMatrix y) {
+	public void setY(DenseMatrix64F y) {
 		Y = y;
 	}
 	public ArrayList<ArrayList<Double>> getA_X() {

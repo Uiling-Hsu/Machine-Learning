@@ -1,0 +1,38 @@
+package ModelBuilder;
+
+import org.ejml.data.DenseMatrix64F;
+import org.ejml.factory.LinearSolver;
+import org.ejml.factory.LinearSolverFactory;
+import org.ejml.ops.CommonOps;
+import org.ejml.simple.SimpleMatrix;
+
+import DataBean.XYMatrix;
+
+public class ModelCalculator {
+	
+	public DenseMatrix64F calculate(double lambda,XYMatrix data){
+		DenseMatrix64F x_trans;
+		x_trans = CommonOps.transpose(data.getX(),null);
+		DenseMatrix64F lambda_m = new DenseMatrix64F(3,3);
+		lambda_m.set(0, 0, lambda);
+		lambda_m.set(1, 1, lambda);
+		lambda_m.set(2, 2, lambda);
+		DenseMatrix64F xTx = new DenseMatrix64F(3,3);
+		CommonOps.mult(x_trans , data.getX() , xTx);
+		DenseMatrix64F lambda_mPlusxTx =  new DenseMatrix64F(3,3);
+		CommonOps.add(lambda_m, xTx, lambda_mPlusxTx);
+		
+		LinearSolver<DenseMatrix64F> pinv = LinearSolverFactory.pseudoInverse(true);
+		pinv.setA(lambda_mPlusxTx);
+		DenseMatrix64F invert =  new DenseMatrix64F(3,3);
+		pinv.invert(invert);
+		DenseMatrix64F xTy =  new DenseMatrix64F(3,1);
+		CommonOps.mult(x_trans , data.getY() , xTx);
+		
+		return null;
+		
+	}
+	
+	
+	
+}

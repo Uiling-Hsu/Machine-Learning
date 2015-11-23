@@ -1,0 +1,13 @@
+package DataBean;
+
+import java.io.File;
+
+public class Util {
+	public final static String train = "data"+File.separator+"hw4_train.txt";
+	public final static String test = "data"+File.separator+"hw4_test.txt";
+	public final static double[] lambdas = {Math.log10(2),Math.log10(1),Math.log10(0),Math.log10(-1),Math.log10(-2),Math.log10(-3),
+		Math.log10(-4),Math.log10(-5),Math.log10(-6),Math.log10(-7),Math.log10(-8),Math.log10(-9),Math.log10(-10)};
+
+
+
+}

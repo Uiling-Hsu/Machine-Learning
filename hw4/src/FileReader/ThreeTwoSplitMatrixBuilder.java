@@ -16,6 +16,8 @@ public class ThreeTwoSplitMatrixBuilder implements MLMatrixBuilder{
 	
 	
 	public void readFile(String path){		
+		train = new XYMatrix();
+		val = new XYMatrix();
 		String  thisLine = null;
 		int seperateLine=0;
 		try{
@@ -38,14 +40,16 @@ public class ThreeTwoSplitMatrixBuilder implements MLMatrixBuilder{
 	        	   
 	           }
 	        }       
+	        br.close();
 	     }catch(Exception e){
 	        e.printStackTrace();
 	     }
+		
 	}
 	
 	private void buildTrainMatrix(){
 		double[][] _x= new double[train.getA_X().size()][];
-		train.setY(new SimpleMatrix(train.getA_Y().size(),1));
+		train.setY(new DenseMatrix64F(train.getA_Y().size(),1));
 		
 		for(int i=0;i<train.getA_X().size();i++){
 			ArrayList<Double> row = train.getA_X().get(i);
@@ -63,7 +67,7 @@ public class ThreeTwoSplitMatrixBuilder implements MLMatrixBuilder{
 	}
 	private void buildValMatrix(){
 		double[][] _x= new double[val.getA_X().size()][];
-		val.setY(new SimpleMatrix(val.getA_Y().size(),1));
+		val.setY(new DenseMatrix64F(val.getA_Y().size(),1));
 		
 		for(int i=0;i<val.getA_X().size();i++){
 			ArrayList<Double> row = val.getA_X().get(i);

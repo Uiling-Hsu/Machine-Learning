@@ -1,0 +1,8 @@
+package DataBean;
+
+import java.io.File;
+
+public class Path {
+	public final static String train = "data"+File.separator+"hw4_train.txt";
+	public final static String test = "data"+File.separator+"hw4_test.txt";
+}

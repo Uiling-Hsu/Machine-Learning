@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import org.ejml.data.DenseMatrix64F;
 import org.ejml.simple.SimpleMatrix;
 
+import DataBean.XYMatrix;
+
 
 public class BasicMatrixBuilder implements MLMatrixBuilder{
-	
-	public static DenseMatrix64F X;
-	public static SimpleMatrix Y;
-	public static ArrayList<ArrayList<Double>> A_X = new ArrayList<ArrayList<Double>>();
-	public static ArrayList<Double> A_Y = new ArrayList<Double>();
+	private XYMatrix data=null;
 	
 	
-	public void readFile(String path){		
+	
+	public void readFile(String path){
+		data = new XYMatrix();
 		String  thisLine = null;		
 		try{
 	        // open input stream test.txt for reading purpose.
@@ -29,31 +29,32 @@ public class BasicMatrixBuilder implements MLMatrixBuilder{
 	           item.add(Double.parseDouble(sep[0]));
 	           item.add(Double.parseDouble(sep[1]));
 	           
-	           A_X.add(item);
-	           A_Y.add(Double.parseDouble(sep[2]));
+	           data.getA_X().add(item);
+	           data.getA_Y().add(Double.parseDouble(sep[2]));
 	           
-	        }       
+	        }   
+	        br.close();
 	     }catch(Exception e){
 	        e.printStackTrace();
 	     }
 	}
 	
 	private void buildMatrix(){
-		double[][] _x= new double[A_X.size()][];
-		Y= new SimpleMatrix(A_Y.size(),1);
+		double[][] _x= new double[data.getA_X().size()][];
+		data.setY( new DenseMatrix64F(data.getA_Y().size(),1));
 		
-		for(int i=0;i<A_X.size();i++){
-			ArrayList<Double> row = A_X.get(i);
+		for(int i=0;i<data.getA_X().size();i++){
+			ArrayList<Double> row = data.getA_X().get(i);
 			double[] copy = new double[row.size()];
 		    for (int j = 0; j < row.size(); j++) {
 		        // Manually loop and set individually
 		        copy[j] = row.get(j);
 		    }
 		    _x[i] = copy;
-		    Y.set(i, 0,A_Y.get(i) );
+		    data.getY().set(i, 0,data.getA_Y().get(i) );
 		}
 		
-		X= new DenseMatrix64F(_x);
+		data.setX(new DenseMatrix64F(_x));
 		
 	}
 	
@@ -62,12 +63,10 @@ public class BasicMatrixBuilder implements MLMatrixBuilder{
 		buildMatrix();
 	}
 	
-	public DenseMatrix64F getX(){
-		return X;
+	public XYMatrix getData(){
+		return data;
 	}
 	
-	public SimpleMatrix getY(){
-		return Y;
-	}
+
 	
 }
