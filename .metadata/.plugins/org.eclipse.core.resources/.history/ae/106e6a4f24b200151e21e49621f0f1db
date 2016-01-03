@@ -1,0 +1,8 @@
+import dataBean.Function;
+
+
+
+
+public class DecisionTree {
+	private Function[] tree;
+}

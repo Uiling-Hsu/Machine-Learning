@@ -1,0 +1,171 @@
+import java.util.ArrayList;
+
+import dataBean.Data;
+import dataBean.Function;
+
+public class DecisionTree {
+
+	
+	
+	public void train(int nodeIndex, ArrayList<Data> trainData,
+			Function[] tree) {
+		if (zeroImpurity(trainData) || allSameX(trainData)) {
+			return;
+		} else {
+
+		}
+	}
+
+	public void sortInputbyFeature(int f_index, ArrayList<Data> trainData) {
+
+		int length = trainData.size();
+		while (length > 0) {
+			int max_index = 0;
+			Data max = trainData.get(0);
+			for (int i = 0; i < length; i++) {
+				if (trainData.get(i).getX().get(f_index) > max.getX().get(f_index)) {
+					max = trainData.get(i);
+					max_index = i;
+				}
+			}
+			length--;
+			Data temp = trainData.get(length);
+			trainData.set(length, max);
+			trainData.set(max_index, temp);
+		}
+	}
+
+	
+	public ArrayList<Double> calThresholdbyFeature(int f_index, ArrayList<Data> trainData){
+		ArrayList<Double> thresholds = new ArrayList<Double>();
+		
+		thresholds.add(trainData.get(0).getX().get(f_index)-1);
+		for(int i=0;i<trainData.size();i++){
+			if((i+1)!=trainData.size()){
+				thresholds.add((trainData.get(i).getX().get(f_index)+trainData.get(i+1).getX().get(f_index))/2);
+			}
+			
+		}
+		thresholds.add(trainData.get(trainData.size()-1).getX().get(f_index)+1);
+		
+		return thresholds;
+	}
+	
+	public Function findMinErrbyFeature(int f_index, ArrayList<Data> trainData){
+		ArrayList<Double> rightPositivePurity = new ArrayList<Double>();
+		ArrayList<Double> leftPositivePurity = new ArrayList<Double>();
+		Function best = new Function();
+		double rpp = 0;
+		double lpp = 0;
+		for(int i=0;i<trainData.size();i++){
+//			System.out.println(train.get(i).getMus().get(iteration));
+			if(trainData.get(i).getY()>0){
+				rpp++;
+			}else{
+				lpp++;
+			}
+		}
+		rightPositivePurity.add(rpp);
+		leftPositivePurity.add(lpp);
+//		System.out.println(plus_error_x0.get(0));
+//		System.out.println(minus_error_x0.get(0));
+//		
+//		System.out.println(mu_sum);
+		
+		for(int i =1;i<thresholds_x0.size();i++){
+			s_plus_error = 0;
+			s_minus_error = 0;
+			if(train.get(i-1).getY()>0){
+				s_plus_error = plus_error_x0.get(i-1)+train.get(i-1).getMus().get(iteration);
+				s_minus_error = minus_error_x0.get(i-1)-train.get(i-1).getMus().get(iteration);
+			}else{
+				s_plus_error = plus_error_x0.get(i-1)-train.get(i-1).getMus().get(iteration);
+				s_minus_error = minus_error_x0.get(i-1)+train.get(i-1).getMus().get(iteration);
+			}
+//			System.out.println("s_plus_error:"+s_plus_error);
+//			System.out.println("s_minus_error:"+s_minus_error);
+			plus_error_x0.add(s_plus_error);
+			minus_error_x0.add(s_minus_error);
+		}
+		for(int i=0;i<plus_error_x0.size();i++){
+			if(plus_error_x0.get(i)<0){
+			System.out.print("plus_error_x0:"+plus_error_x0.get(i)+" ");
+			}
+		}
+		for(int i=0;i<minus_error_x0.size();i++){
+			if(minus_error_x0.get(i)<0){
+			System.out.print("minus_error_x0:"+minus_error_x0.get(i)+" ");
+			}
+		}
+		
+		
+		int min_index=0;
+		double min_error =0;
+		double s =0;
+		
+		
+		int positive_min_index=0;
+		double positive_min_error =plus_error_x0.get(0);
+		int negative_min_index=0;
+		double negative_min_error =minus_error_x0.get(0);
+		
+		
+		for(int i=0;i<plus_error_x0.size();i++){
+			if(plus_error_x0.get(i)<positive_min_error){
+				positive_min_error = plus_error_x0.get(i);
+				positive_min_index = i;
+			}		
+		}
+		
+		
+		for(int i=0;i<minus_error_x0.size();i++){
+			if(minus_error_x0.get(i)<negative_min_error){
+				negative_min_error = minus_error_x0.get(i);
+				negative_min_index = i;
+			}		
+		}
+		
+		if(negative_min_error<positive_min_error){
+			s=-1;
+			min_error = negative_min_error;
+			min_index = negative_min_index;
+		}else{
+			s=1;
+			min_error = positive_min_error;
+			min_index = positive_min_index;
+		}
+		
+		
+		Function f = new Function();
+		f.setS(s);
+		f.setErrRate((min_error/mu_sum));
+		f.setThreshold(thresholds_x0.get(min_index));
+		f.setFeature_index(0);
+//		System.out.println(f.getS()+" " + f.getThreshold()+ " "+min_error+" "+mu_sum+" "+f.getErrRate());
+		
+		return f;
+		
+	}
+	private boolean zeroImpurity(ArrayList<Data> trainData) {
+		Data temp = trainData.get(0);
+		for (Data d : trainData) {
+			if (d.getY() != temp.getY()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean allSameX(ArrayList<Data> trainData) {
+		Data temp = trainData.get(0);
+		for (Data d : trainData) {
+			for (int i = 0; i < d.getX().size(); i++) {
+				if (!d.getX().get(i).equals(temp.getX().get(i))) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+}

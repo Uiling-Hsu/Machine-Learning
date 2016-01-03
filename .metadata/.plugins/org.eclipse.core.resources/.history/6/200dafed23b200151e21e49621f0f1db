@@ -1,0 +1,8 @@
+import util.Function;
+
+
+
+
+public class DecisionTree {
+	private Function[] tree;
+}

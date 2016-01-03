@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+
+import dataBean.Data;
+import dataBean.Function;
+
+
+public class DecisionTree {
+	
+	
+	public static void train(int nodeIndex, ArrayList<Data> trainData, Function[] tree){
+		if(zeroImpurity(trainData)||allSameX(trainData)){
+			return;
+		}else{
+			
+			
+		}
+	}
+	
+	
+	public static void sortInputbyFeature(int index, ArrayList<Data> trainData){	
+			
+			int length = trainData.size();
+			while(length>0){
+				int max_index = 0;
+				Data max =trainData.get(0);
+				for(int i=0;i<length;i++){	
+					if(trainData.get(i).getX().get(index)>max.getX().get(index)){
+						max = trainData.get(i);
+						max_index = i;
+					}
+				}	
+				length--;
+				Data temp = trainData.get(length);
+				trainData.set(length, max);
+				trainData.set(max_index, temp);
+			}
+	}
+	
+	private static boolean zeroImpurity(ArrayList<Data> trainData){
+		Data temp =trainData.get(0);
+		for(Data d: trainData){
+			if(d.getY()!=temp.getY()){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private static boolean allSameX(ArrayList<Data> trainData){
+		Data temp = trainData.get(0);
+		for(Data d:trainData){
+			for(int i =0;i<d.getX().size();i++){
+				if(!d.getX().get(i).equals(temp.getX().get(i))){
+					return false;
+				}
+			}				
+		}
+		return true;
+	}
+	
+}

@@ -1,0 +1,19 @@
+import java.io.File;
+import java.util.ArrayList;
+
+import dataBean.Data;
+
+
+public class main {
+	
+	public static String train_inputPath = "resource" + File.separator + "hw7_train.txt";
+	public static String test_inputPath = "resource" + File.separator + "hw7_test.txt";
+	
+	
+	public static void main(String[] args){
+		ArrayList<Data> trainData ;
+		DataReader dataReader = new DataReader();
+		dataReader.read(input_file_name);
+		
+	}
+}

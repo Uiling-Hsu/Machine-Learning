@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+import dataBean.Data;
+import dataBean.Function;
+
+
+public class DecisionTree {
+	private Function[] tree;
+	
+	
+	
+	public DecisionTree(ArrayList<Data> trainData){
+		
+		
+		
+	}
+	
+	public static void train(){
+		
+	}
+	
+}

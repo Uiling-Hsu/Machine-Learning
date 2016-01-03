@@ -1,0 +1,30 @@
+import java.io.File;
+import java.util.ArrayList;
+
+import dataBean.Data;
+import dataBean.Function;
+
+
+public class main {
+	
+	public static String train_inputPath = "resource" + File.separator + "hw7_train.txt";
+	public static String test_inputPath = "resource" + File.separator + "hw7_test.txt";
+	
+	
+	public static void main(String[] args){
+		ArrayList<Data> trainData ;
+		DataReader dataReader = new DataReader();
+		DecisionTree decisionTree = new DecisionTree();
+		trainData = dataReader.read(train_inputPath);
+		
+		Function[] tree = new Function[trainData.size()-1];
+		
+		
+		decisionTree.train(1, trainData, tree);
+		
+	}
+	
+
+	
+                      
+}
