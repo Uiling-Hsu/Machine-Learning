@@ -1,3 +1,4 @@
+package hw7;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,10 +16,11 @@ public class DataReader {
 	
 	
 	public DataReader(){
-		 datas = new ArrayList<Data>();
+		
 	}
 	
 	public ArrayList<Data> read(String input_file_name) {
+		 datas = new ArrayList<Data>();
 		String thisLine = null;
 		try {
 			// open input stream test.txt for reading purpose.

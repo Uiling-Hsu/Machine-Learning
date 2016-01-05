@@ -8,6 +8,8 @@ public class Function {
 	private double alpha;
 	private double errRate;
 	private int minArgIndex;
+	private boolean isLeaves = false;
+	private double value;
 	
 	public double getS() {
 		return s;
@@ -50,6 +52,18 @@ public class Function {
 	}
 	public void setMinArgIndex(int minArgIndex) {
 		this.minArgIndex = minArgIndex;
+	}
+	public boolean isLeaves() {
+		return isLeaves;
+	}
+	public void setLeaves(boolean isLeaves) {
+		this.isLeaves = isLeaves;
+	}
+	public double getValue() {
+		return value;
+	}
+	public void setValue(double value) {
+		this.value = value;
 	}
 	
 	
